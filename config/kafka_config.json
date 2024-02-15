@@ -1,0 +1,12 @@
+{
+  "bootstrap_servers": "localhost:9092",
+  "topics": [
+    "streaming.raw_events",
+    "streaming.processed_events",
+    "streaming.drift_events",
+    "streaming.contract_events",
+    "streaming.metrics",
+    "streaming.errors"
+  ],
+  "group_id_prefix": "streaming-drift-detector"
+}

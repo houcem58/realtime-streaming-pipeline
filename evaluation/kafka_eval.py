@@ -52,7 +52,7 @@ from __future__ import annotations
 
 import json
 import time
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 from typing import Optional
 
 import pandas as pd
@@ -61,7 +61,7 @@ from evaluation.drift_injector import DriftInjector
 from evaluation.metrics import DriftMetrics
 
 try:
-    from confluent_kafka import Consumer, Producer, KafkaException
+    from confluent_kafka import Consumer, Producer
     _KAFKA_AVAILABLE = True
 except ImportError:
     _KAFKA_AVAILABLE = False

@@ -213,8 +213,8 @@ def build_hdfs_trace_replay_stream(
         "replayed_event_count": int(len(events_df)),
         "event_columns": list(events_df.columns),
         "label_columns": list(labels_df.columns),
-        "clean_windows": int((labels_df["has_anomaly"] == False).sum()),
-        "anomaly_windows": int((labels_df["has_anomaly"] == True).sum()),
+        "clean_windows": int((~labels_df["has_anomaly"]).sum()),
+        "anomaly_windows": int(labels_df["has_anomaly"].sum()),
     }
     out_schema.write_text(json.dumps(schema, indent=2), encoding="utf-8")
     return schema

@@ -1,5 +1,5 @@
 # Core data processing
-pandas>=2.0.0
+pandas>=3.0.3
 numpy>=1.26.0
 
 # Kafka client (optional — required only for Kafka E2E mode)

@@ -7,8 +7,8 @@ sys.path.insert(0, str(ROOT))
 
 import pandas as pd  # noqa: E402
 from adapters.nasa_adapter import load_nasa  # noqa: E402
-from adapters.retail_adapter import load_retail  # noqa: E402
-from adapters.olist_adapter import load_olist  # noqa: E402
+from adapters.retail_adapter import load_retail  # noqa: E402,F401
+from adapters.olist_adapter import load_olist  # noqa: E402,F401
 from evaluation.drift_injector import DriftInjector  # noqa: E402
 from streaming.drift_detector import DriftDetector  # noqa: E402
 

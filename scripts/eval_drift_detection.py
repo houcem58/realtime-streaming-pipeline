@@ -34,7 +34,7 @@ import pandas as pd
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 
-from streaming.drift_detector import DriftDetector
+from streaming.drift_detector import DriftDetector  # noqa: E402
 
 EVENTS = ROOT / "data" / "events_sample.csv"
 LABELS = ROOT / "data" / "window_labels.csv"

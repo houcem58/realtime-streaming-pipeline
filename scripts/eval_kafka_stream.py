@@ -60,13 +60,13 @@ _ROOT = Path(__file__).resolve().parent.parent
 if str(_ROOT) not in sys.path:
     sys.path.insert(0, str(_ROOT))
 
-from adapters.nasa_adapter import load_nasa
-from adapters.retail_adapter import load_retail
-from adapters.olist_adapter import load_olist
-from evaluation.drift_injector import DriftInjector
-from evaluation.kafka_eval import DriftEvaluator, EvalConfig
-from evaluation.metrics import DriftMetrics
-from streaming.drift_detector import DriftDetector
+from adapters.nasa_adapter import load_nasa  # noqa: E402
+from adapters.retail_adapter import load_retail  # noqa: E402
+from adapters.olist_adapter import load_olist  # noqa: E402
+from evaluation.drift_injector import DriftInjector  # noqa: E402
+from evaluation.kafka_eval import DriftEvaluator, EvalConfig  # noqa: E402
+from evaluation.metrics import DriftMetrics  # noqa: E402
+from streaming.drift_detector import DriftDetector  # noqa: E402
 
 # ── Default dataset paths ─────────────────────────────────────────────────────
 _ETL_ROOT = Path(r"C:\Users\houce\Desktop\ETL")

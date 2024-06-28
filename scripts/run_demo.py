@@ -31,14 +31,12 @@ import json
 import sys
 from pathlib import Path
 
-import pandas as pd
-
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 
-from streaming.drift_detector import DriftDetector
-from streaming.executor import StreamingExecutor
-from streaming.sources import CSVStreamSource, SimulatedStreamSource
+from streaming.drift_detector import DriftDetector  # noqa: E402
+from streaming.executor import StreamingExecutor  # noqa: E402
+from streaming.sources import CSVStreamSource, SimulatedStreamSource  # noqa: E402
 
 SAMPLE_DATA = ROOT / "data" / "events_sample.csv"
 LABELS_DATA = ROOT / "data" / "window_labels.csv"
@@ -80,7 +78,7 @@ def run_csv_demo(batches: int, batch_size: int) -> None:
 
     summary_df = detector.summarize_events()
     if not summary_df.empty:
-        print(f"\nDrift event breakdown:")
+        print("\nDrift event breakdown:")
         print(summary_df.groupby(["drift_type", "severity"])["column"].count().to_string())
 
 

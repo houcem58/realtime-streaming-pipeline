@@ -69,14 +69,16 @@ from evaluation.metrics import DriftMetrics  # noqa: E402
 from streaming.drift_detector import DriftDetector  # noqa: E402
 
 # ── Default dataset paths ─────────────────────────────────────────────────────
-_ETL_ROOT = Path(r"C:\Users\houce\Desktop\ETL")
+# Full public datasets must be downloaded separately (see README § Reproducing Benchmarks).
+# Override any path via environment variable, e.g. DRIFT_HDFS_EVENTS=/path/to/file.csv
+_DATA_ROOT = Path(os.environ.get("DRIFT_DATA_ROOT", str(_ROOT / "data" / "real")))
 DEFAULT_PATHS = {
-    "hdfs_events":    _ETL_ROOT / "bench_v6/streaming_drift/public_logs/data/public_log_events.csv",
-    "hdfs_labels":    _ETL_ROOT / "bench_v6/streaming_drift/public_logs/data/public_log_window_labels.csv",
-    "nasa":           _ETL_ROOT / "data/real/nasa/nasa_http.csv",
-    "retail":         _ETL_ROOT / "data/real/retail/online_retail_ii.csv",
-    "olist_orders":   _ETL_ROOT / "data/real/olist/olist_orders_dataset.csv",
-    "olist_payments": _ETL_ROOT / "data/real/olist/olist_order_payments_dataset.csv",
+    "hdfs_events":    Path(os.environ.get("DRIFT_HDFS_EVENTS",    str(_DATA_ROOT / "hdfs/public_log_events.csv"))),
+    "hdfs_labels":    Path(os.environ.get("DRIFT_HDFS_LABELS",    str(_DATA_ROOT / "hdfs/public_log_window_labels.csv"))),
+    "nasa":           Path(os.environ.get("DRIFT_NASA",           str(_DATA_ROOT / "nasa/nasa_http.csv"))),
+    "retail":         Path(os.environ.get("DRIFT_RETAIL",         str(_DATA_ROOT / "retail/online_retail_ii.csv"))),
+    "olist_orders":   Path(os.environ.get("DRIFT_OLIST_ORDERS",   str(_DATA_ROOT / "olist/olist_orders_dataset.csv"))),
+    "olist_payments": Path(os.environ.get("DRIFT_OLIST_PAYMENTS", str(_DATA_ROOT / "olist/olist_order_payments_dataset.csv"))),
 }
 
 BANNER = """

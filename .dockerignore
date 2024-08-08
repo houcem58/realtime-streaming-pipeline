@@ -1,0 +1,17 @@
+.git
+.github
+.venv
+__pycache__
+*.pyc
+*.pyo
+*.egg-info
+.pytest_cache
+.ruff_cache
+.pre-commit-config.yaml
+docs/
+*.md
+Makefile
+tests/
+evaluation/test_*.py
+data/*.csv
+data/*.json

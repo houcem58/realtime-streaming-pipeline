@@ -104,3 +104,27 @@ python scripts/eval_kafka_stream.py --kafka
 
 For production deployment, replace the local docker-compose with a managed Kafka cluster
 (Confluent Cloud, AWS MSK, Azure Event Hubs with Kafka protocol).
+
+---
+
+## Component Diagram
+
+```mermaid
+flowchart TD
+    DS[("Data Sources\nHDFS · NASA · Retail · Olist")]
+    AD["Dataset Adapters\nnormalize to 20-column schema"]
+    DI["DriftInjector\ndeterministic seed=42"]
+    RE[("streaming.raw_events\nKafka topic")]
+    DD["DriftDetector\nfit_baseline + detect\n5 drift types"]
+    DE[("streaming.drift_events\nseverity · column · action")]
+    PE[("streaming.processed_events")]
+    CE[("streaming.contract_events")]
+    ME[("streaming.metrics")]
+    EV["DriftEvaluator\nF1 · Precision · Recall · FPR"]
+
+    DS --> AD --> DI --> RE --> DD
+    DD --> DE --> EV
+    DD --> PE
+    DD --> CE
+    DD --> ME
+```

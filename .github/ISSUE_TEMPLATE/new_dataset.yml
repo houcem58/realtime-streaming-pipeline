@@ -1,0 +1,64 @@
+name: New Dataset Adapter
+description: Request or propose adding a new dataset to the evaluation framework
+title: "[DATASET] Add support for: "
+labels: ["enhancement", "dataset"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Propose a new dataset for the drift detection evaluation framework.
+
+  - type: input
+    id: dataset-name
+    attributes:
+      label: Dataset name
+      placeholder: "KDD Cup 1999 Network Intrusion"
+    validations:
+      required: true
+
+  - type: input
+    id: dataset-url
+    attributes:
+      label: Dataset source URL
+      placeholder: "https://kdd.ics.uci.edu/databases/kddcup99/"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: domain
+    attributes:
+      label: Domain
+      options:
+        - Server / infrastructure logs
+        - Network traffic
+        - E-commerce transactions
+        - Financial transactions
+        - IoT / sensor data
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: schema
+    attributes:
+      label: Dataset schema (key columns)
+      description: List the most important columns and their types
+      placeholder: |
+        duration: int (connection duration in seconds)
+        protocol_type: str (tcp/udp/icmp)
+        bytes_in: int
+        label: str (normal/attack)
+
+  - type: textarea
+    id: drift-rationale
+    attributes:
+      label: Why is this dataset relevant for drift detection?
+      description: What types of drift naturally occur in this dataset?
+
+  - type: checkboxes
+    id: license
+    attributes:
+      label: License confirmation
+      options:
+        - label: I have confirmed the dataset license permits research and benchmarking use
+          required: true

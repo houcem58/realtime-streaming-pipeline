@@ -1,0 +1,76 @@
+name: Bug Report
+description: Report a drift detection regression, evaluation failure, or pipeline error
+title: "[BUG] "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Please fill in as much detail as possible to help diagnose the issue quickly.
+
+  - type: dropdown
+    id: component
+    attributes:
+      label: Affected component
+      options:
+        - DriftDetector (streaming/drift_detector.py)
+        - StreamingExecutor / KafkaStreamingExecutor
+        - Dataset adapter (adapters/)
+        - Evaluation framework (evaluation/)
+        - Kafka topics / ensure_topics.py
+        - Docker / infrastructure
+        - CI pipeline
+        - Documentation
+    validations:
+      required: true
+
+  - type: dropdown
+    id: dataset
+    attributes:
+      label: Affected dataset (if applicable)
+      multiple: true
+      options:
+        - HDFS (LogHub)
+        - NASA HTTP
+        - Online Retail II
+        - Olist
+        - All datasets
+        - Not dataset-specific
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: What happened? What did you expect to happen?
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Run `make eval`
+        2. Observe output for HDFS dataset
+        3. F1 = 0.45, expected > 0.75
+
+  - type: textarea
+    id: output
+    attributes:
+      label: Actual output / error
+      render: shell
+
+  - type: input
+    id: python-version
+    attributes:
+      label: Python version
+      placeholder: "3.11.4"
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Before submitting
+      options:
+        - label: I ran `make test` and confirmed the failure is reproducible
+        - label: I checked the Runbook for known failure modes
+        - label: I confirmed the dataset files are unmodified

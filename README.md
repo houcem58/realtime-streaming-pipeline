@@ -277,6 +277,11 @@ realtime-streaming-pipeline/
 | [Architecture](docs/Architecture.md) | System design, component interactions, Kafka topology |
 | [Calibration](docs/Calibration.md) | Per-dataset threshold decisions and methodology |
 | [Business Case](docs/BusinessCase.md) | Use cases, ROI context, target environments |
+| [Engineering Standards](docs/EngineeringStandards.md) | Code conventions, PR process, observability requirements |
+| [Runbook](docs/Runbook.md) | Operational procedures, failure recovery, alert response |
+| [Sequence Diagram](docs/SequenceDiagram.md) | End-to-end flow: producer → Kafka → detector → evaluator |
+| [ADR-001](docs/decisions/ADR-001-microbatch-vs-true-streaming.md) | Micro-batch vs true streaming architecture decision |
+| [ADR-002](docs/decisions/ADR-002-threshold-calibration-strategy.md) | Per-dataset threshold calibration strategy decision |
 | [Roadmap](ROADMAP.md) | Planned enhancements and future directions |
 | [Contributing](CONTRIBUTING.md) | How to contribute, code standards, PR process |
 | [Security](SECURITY.md) | Reporting vulnerabilities |

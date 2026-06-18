@@ -1,0 +1,94 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+env:
+  PYTHON_VERSION: "3.11"
+
+jobs:
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+
+      - name: Install ruff
+        run: pip install ruff
+
+      - name: Lint source
+        run: ruff check streaming/ kafka/ adapters/ evaluation/ scripts/ --ignore E501
+
+  test:
+    name: Unit Tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Validate core imports
+        run: |
+          python -c "from streaming.drift_detector import DriftDetector; print('✓ DriftDetector')"
+          python -c "from streaming.executor import StreamExecutor; print('✓ StreamExecutor')"
+          python -c "from evaluation.metrics import compute_metrics; print('✓ metrics')"
+
+      - name: Run evaluation metrics unit tests
+        run: python -m pytest evaluation/ -v --tb=short -q
+
+  integration:
+    name: Integration — Kafka
+    runs-on: ubuntu-latest
+    needs: [lint, test]
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Start Kafka stack
+        run: docker compose up -d kafka zookeeper
+        timeout-minutes: 2
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Wait for Kafka to be ready
+        run: |
+          echo "Waiting for Kafka..."
+          for i in $(seq 1 30); do
+            docker compose exec -T kafka kafka-topics.sh \
+              --bootstrap-server localhost:9092 --list &>/dev/null && break
+            sleep 2
+          done
+
+      - name: Create topics
+        run: python kafka/ensure_topics.py
+
+      - name: Run smoke evaluation
+        run: python scripts/run_demo.py
+
+      - name: Tear down
+        if: always()
+        run: docker compose down -v
+
+  docker:
+    name: Docker Compose Validate
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate compose file
+        run: docker compose config -q

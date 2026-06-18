@@ -5,12 +5,12 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 
-import pandas as pd
-from adapters.nasa_adapter import load_nasa
-from adapters.retail_adapter import load_retail
-from adapters.olist_adapter import load_olist
-from evaluation.drift_injector import DriftInjector
-from streaming.drift_detector import DriftDetector
+import pandas as pd  # noqa: E402
+from adapters.nasa_adapter import load_nasa  # noqa: E402
+from adapters.retail_adapter import load_retail  # noqa: E402
+from adapters.olist_adapter import load_olist  # noqa: E402
+from evaluation.drift_injector import DriftInjector  # noqa: E402
+from streaming.drift_detector import DriftDetector  # noqa: E402
 
 ETL = Path(r"C:\Users\houce\Desktop\ETL")
 

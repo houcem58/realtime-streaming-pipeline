@@ -2,7 +2,7 @@
 
 A production-grade streaming pipeline that detects schema and statistical drift in real-time event streams using Apache Kafka. Validated against four public datasets with F1 ≥ 0.92 (average 0.955) using two-level evaluation methodology.
 
-[![CI](https://github.com/houcem58/realtime-streaming-pipeline/actions/workflows/ci.yml/badge.svg)](https://github.com/houcem58/realtime-streaming-pipeline/actions/workflows/ci.yml)
+[![Pipeline](https://github.com/houcem58/realtime-streaming-pipeline/actions/workflows/pipeline.yml/badge.svg)](https://github.com/houcem58/realtime-streaming-pipeline/actions/workflows/pipeline.yml)
 [![Python 3.11+](https://img.shields.io/badge/python-3.11+-blue.svg)](https://www.python.org/)
 [![Apache Kafka](https://img.shields.io/badge/Apache%20Kafka-2.8+-black.svg)](https://kafka.apache.org/)
 [![License](https://img.shields.io/badge/License-Apache%202.0-green.svg)](LICENSE)

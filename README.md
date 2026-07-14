@@ -42,7 +42,7 @@ F1 / Precision / Recall / Accuracy
 
 ## Benchmark Results
 
-All numbers below are from a single deterministic run (`seed=42`) with no post-hoc tuning.
+All numbers below are from a single deterministic run (`seed=42`). Per-dataset `exclude_columns` and threshold parameters are set once per dataset to account for domain-specific column semantics — see the calibration notes in the benchmark table below.
 
 ### Level 1 — Independent Validation (Real Labels)
 

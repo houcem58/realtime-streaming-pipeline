@@ -1,6 +1,6 @@
 # Core data processing
 pandas>=2.0.0
-numpy>=1.26.0
+numpy>=2.5.1
 
 # Kafka client (optional — required only for Kafka E2E mode)
 confluent-kafka>=2.3.0

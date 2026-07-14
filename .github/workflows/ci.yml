@@ -42,8 +42,8 @@ jobs:
       - name: Validate core imports
         run: |
           python -c "from streaming.drift_detector import DriftDetector; print('✓ DriftDetector')"
-          python -c "from streaming.executor import StreamExecutor; print('✓ StreamExecutor')"
-          python -c "from evaluation.metrics import compute_metrics; print('✓ metrics')"
+          python -c "from streaming.executor import StreamingExecutor; print('✓ StreamingExecutor')"
+          python -c "from evaluation.metrics import DriftMetrics; print('✓ DriftMetrics')"
 
       - name: Run evaluation metrics unit tests
         run: python -m pytest evaluation/ -v --tb=short -q

@@ -12,4 +12,4 @@ scikit-learn>=1.9.0
 python-dateutil>=2.9.0.post0
 
 # Dev / QA
-pytest>=7.0.0
+pytest>=9.1.1

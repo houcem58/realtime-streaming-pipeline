@@ -9,7 +9,7 @@ confluent-kafka>=2.15.0
 scikit-learn>=1.9.0
 
 # Utilities
-python-dateutil>=2.9.0.post0
+python-dateutil>=3.0.0
 
 # Dev / QA
 pytest>=7.0.0
